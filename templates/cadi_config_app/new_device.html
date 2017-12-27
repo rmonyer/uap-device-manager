@@ -1,0 +1,25 @@
+{% extends "cadi_config_app/base.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="d-flex justify-content-center flex-column">
+    <div class="section-title col-lg-8 col-md-10 ml-auto mr-auto">
+        <br />
+        <h1 class="display-4 font-weight-bold">Add New UAP Device</h1>
+        <br /><br />
+        <form method="post" class="bootstrap4">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <!-- {% include 'cadi_config_app/bs4_form.html' with form=form %} -->
+            <br />
+            <div class="modal-footer">
+                <a href="/devices/" class="btn btn-secondary" role="button">Cancel</a>
+                <button type="submit" class="btn btn-primary">Next</button>
+            </div>
+        </form>
+    </div>
+</div>
+<br /><br />
+{% endblock content %}

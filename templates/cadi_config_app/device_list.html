@@ -1,0 +1,52 @@
+{% extends "cadi_config_app/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<br><br>
+<div class="d-flex justify-content-center flex-column">
+    <div class="section-title col-lg-8 col-md-10 ml-auto mr-auto">
+        <br />
+        <h1 class="display-4 font-weight-bold">Available UAP Devices</h1>
+        <br /><br />
+        <a href="/add-device/" class="btn btn-info btn-pill align-self-center">Add New</a>
+        <br /><br />
+        {% if all_devices_list %}
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">DESCRIPTION</th>
+                    <th scope="col">MAC ADDRESS</th>
+                    <th scope="col">CREATED DATE</th>
+                    <th scope="col">MODIFIED DATE</th>
+                    <th scope="col">MODIFIED BY</th>
+                    <th scope="col">ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for device in all_devices_list %}
+                <tr>                    
+                    <th scope="row">{{device.description}}</th>
+                    <th scope="row">{{device.mac_address}}</th>
+                    <th scope="row">{{device.created_date}}</th>
+                    <th scope="row">{{device.modified_date}}</th>
+                    <th scope="row">{{device.modified_by}}</th>
+                    <!-- <td><a href="#" class="btn btn-info btn-sm btn-pill align-self-center">Open</a></td> -->
+                    <td>
+                        <div class="row" >
+                            <a href="{% url 'configuration_data' device.pk %}" class="fa fa-edit col-sm" data-toggle="tooltip" title="View/Edit"></a>
+                            <a href="{% url 'delete_device' device.pk %}" class="fa fa-remove col-sm" data-toggle="tooltip" title="Delete"></a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="alert alert-warning" role="alert">
+            There are no CADi device configurations found.
+        </div>          
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

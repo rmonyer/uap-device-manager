@@ -1,0 +1,27 @@
+{% extends "cadi_config_app/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<!-- Floating GTC Logo -->
+<img src="{% static 'cadi_config_app/images/gtc-logo-beveled.png' %}" alt="Shard" class="shard">
+
+<!-- Welcome Section -->
+<div class="welcome d-flex justify-content-center flex-column">
+    <div class="inner-wrapper mt-auto mb-auto">
+        <h1 class="slide-in">UAP Device</h1>
+        <h2 class="slide-in">Configuration Manager</h1>
+        <p class="slide-in">Administrator server to manage connected UAP Device configurations.</p>
+        <div class="action-links slide-in">
+          <a href="/admin/login/?next=/devices/" class="btn btn-primary btn-pill align-self-center mr-2"><i class="fa fa-sign-in mr-1"></i> Login</a>
+          <a href="/devices/" class="btn btn-outline-light btn-pill align-self-center">Browse Data</a>
+        </div>
+    </div>
+    <div class="product-by">
+        <a href="https://gai-tronics.com" target="_blank">
+            <p>A Product By</p>
+            <img src="{% static 'cadi_config_app/images/G-logo-with-gai-tronics-black-resized-for-OHW-.png' %}" alt="GAI-Tronics Corporation - Providing Worldwide Communications Solutions for over Seventy Years">
+        </a>
+    </div>
+</div>
+{% endblock content %}

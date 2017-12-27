@@ -1,0 +1,77 @@
+{% extends "cadi_config_app/base.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="d-flex justify-content-center flex-column">
+    <div class="section-title col-lg-8 col-md-10 ml-auto mr-auto">
+        <!-- <br /> -->
+        <h1 class="display-4 font-weight-bold">UAP Device Configuration</h1>
+        <br />
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <br />
+        <form method="post" class="bootstrap4">
+            {% csrf_token %}
+            <ul class="nav nav-tabs nav-justified" id="config_data_tabs" role="tablist">
+                <li class="nav-item">
+                <a class="nav-link active" id="uap-tab" data-toggle="tab" href="#uap" role="tab" aria-controls="uap" aria-selected="true">UAP</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" id="sp2-tab" data-toggle="tab" href="#sp2" role="tab" aria-controls="sp2" aria-selected="false">SP2</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" id="sip-tab" data-toggle="tab" href="#sip" role="tab" aria-controls="sip" aria-selected="false">SIP</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" id="p2p-tab" data-toggle="tab" href="#p2p" role="tab" aria-controls="p2p" aria-selected="false">P2P</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="config_data_tap_content">
+                <div class="tab-pane fade show active" id="uap" role="tabpanel" aria-labelledby="uap-tab">
+                    <br />
+                    <!-- {{ formset.management_form|crispy }}
+                    {% for form in formset %}
+                        {% ifequal form.module.value "UAP" %}
+                            {% crispy form %}
+                        {% endifequal %}
+                    {% endfor %} -->
+                    {% crispy formset %}
+                    <br /><br />
+                    <div class="modal-footer">                        
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="sp2" role="tabpanel" aria-labelledby="sp2-tab">
+                    <br />
+                    {% crispy formset %}
+                    <br /><br />
+                    <div class="modal-footer">                        
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="sip" role="tabpanel" aria-labelledby="sip-tab">
+                    <br />
+                    {% crispy formset %}
+                    <br /><br />
+                    <div class="modal-footer">                        
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="p2p" role="tabpanel" aria-labelledby="p2p-tab">
+                    <br />
+                    {% crispy formset %}
+                    <br /><br />
+                    <div class="modal-footer">                        
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+            <br /><br />
+            <!-- <div class="modal-footer">                        
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>                 -->
+        </form>
+    </div>
+</div>
+{% endblock content %}
